@@ -14,7 +14,11 @@
       <ul class="list-group">
         <li
           class="list-group-item"
-          *ngFor="let server of servers | filter: filteredStatus:'status'"
+          *ngFor="
+            let server of servers
+              | filter: filteredStatus:'status'
+              | sort: 'name'
+          "
           [ngClass]="getStatusClasses(server)"
         >
           <span class="badge">
@@ -23,7 +27,7 @@
           <!-- pîpes can be chained using "'fullDate':'fullDate'" -->
           <!-- Remember pipes are read right to left, so watch the order -->
           <strong>{{ server.name | shorten: 13 }}</strong> |
-          {{ server.instanceType | uppercase }} |
+          {{ server.instanceType | uppercase | reverse }} |
           {{ server.started | date: "fullDate" }}
         </li>
       </ul>
